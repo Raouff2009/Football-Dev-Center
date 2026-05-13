@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --green:#0a3d1f;
+    --green2:#0f5c2e;
+    --green3:#1a7a3d;
+    --gold:#d4a017;
+    --gold2:#f0c040;
+    --white:#f5f5f0;
+    --gray:#8a8a8a;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Tajawal',sans-serif;background:#050d07;color:var(--white);overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(5,13,7,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,160,23,0.2)}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--gold)}
+  .logo span{color:var(--white)}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{color:rgba(245,245,240,0.7);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s;letter-spacing:1px}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-cta{background:var(--gold);color:#050d07;padding:10px 24px;border-radius:4px;font-weight:700;font-size:13px;cursor:pointer;border:none;letter-spacing:1px;transition:all .3s}
+  .nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+
+  /* HERO */
+  .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(10,61,31,0.6) 0%,transparent 70%),url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&q=80') center/cover no-repeat;filter:brightness(0.35)}
+  .hero-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(212,160,23,0.03) 80px,rgba(212,160,23,0.03) 81px),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(212,160,23,0.03) 80px,rgba(212,160,23,0.03) 81px)}
+  .hero-content{position:relative;z-index:2;padding:0 8%;max-width:800px;margin-top:80px}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.4);padding:8px 18px;border-radius:30px;font-size:13px;color:var(--gold);margin-bottom:24px;letter-spacing:1px}
+  .hero-badge i{font-size:16px}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,110px);line-height:0.95;letter-spacing:2px;margin-bottom:24px}
+  h1 .line1{color:var(--white);display:block}
+  h1 .line2{color:var(--gold);display:block}
+  .hero-desc{font-size:17px;color:rgba(245,245,240,0.65);line-height:1.8;max-width:500px;margin-bottom:40px;font-weight:300}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .btn-primary{background:var(--gold);color:#050d07;padding:16px 36px;border-radius:4px;font-weight:800;font-size:15px;cursor:pointer;border:none;letter-spacing:1px;transition:all .3s;text-decoration:none;display:inline-block}
+  .btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
+  .btn-secondary{background:transparent;color:var(--white);padding:16px 36px;border-radius:4px;font-weight:600;font-size:15px;cursor:pointer;border:1.5px solid rgba(245,245,240,0.3);letter-spacing:1px;transition:all .3s;text-decoration:none;display:inline-block}
+  .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+  .hero-stats{position:absolute;bottom:50px;right:8%;display:flex;gap:40px;z-index:2}
+  .stat{text-align:center}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--gold);line-height:1}
+  .stat-label{font-size:11px;color:rgba(245,245,240,0.5);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+  .hero-divider{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.4),transparent)}
+
+  /* SECTION BASE */
+  section{padding:100px 8%}
+  .section-tag{font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:block}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,60px);letter-spacing:2px;line-height:1.1;margin-bottom:16px}
+  .section-sub{font-size:16px;color:rgba(245,245,240,0.55);max-width:520px;line-height:1.8;font-weight:300}
+
+  /* ABOUT */
+  .about{background:#060e08}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+  .about-img-wrap{position:relative}
+  .about-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;filter:brightness(0.85)}
+  .about-img-border{position:absolute;inset:-12px;border:1px solid rgba(212,160,23,0.3);border-radius:2px;pointer-events:none}
+  .about-gold-line{position:absolute;top:30px;right:-30px;width:60px;height:4px;background:var(--gold)}
+  .about-features{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+  .feature{padding:20px;background:rgba(212,160,23,0.05);border:1px solid rgba(212,160,23,0.12);border-radius:4px}
+  .feature i{font-size:22px;color:var(--gold);margin-bottom:10px}
+  .feature-title{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--white)}
+  .feature-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+  /* PROGRAMS */
+  .programs{background:#050d07}
+  .programs-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:20px}
+  .programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .program-card{background:#060e08;border:1px solid rgba(212,160,23,0.12);border-radius:6px;overflow:hidden;transition:all .3s;cursor:pointer}
+  .program-card:hover{border-color:rgba(212,160,23,0.4);transform:translateY(-4px)}
+  .program-card:hover .program-img{transform:scale(1.05)}
+  .program-img-wrap{overflow:hidden;height:200px}
+  .program-img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:brightness(0.7)}
+  .program-body{padding:24px}
+  .program-age{display:inline-block;background:rgba(212,160,23,0.15);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px;margin-bottom:14px;letter-spacing:1px}
+  .program-title{font-size:18px;font-weight:800;margin-bottom:8px}
+  .program-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+  .program-link{color:var(--gold);font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;text-decoration:none}
+  .program-link i{transition:transform .3s}
+  .program-card:hover .program-link i{transform:translateX(-6px)}
+
+  /* ACHIEVEMENTS */
+  .achievements{background:#060e08;position:relative;overflow:hidden}
+  .ach-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1400&q=80') center/cover no-repeat;opacity:0.05}
+  .ach-content{position:relative;z-index:2}
+  .ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(212,160,23,0.1);margin-top:60px;border:1px solid rgba(212,160,23,0.1)}
+  .ach-item{background:#060e08;padding:40px 24px;text-align:center}
+  .ach-icon{width:56px;height:56px;background:rgba(212,160,23,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px;color:var(--gold)}
+  .ach-num{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--gold);line-height:1}
+  .ach-label{font-size:13px;color:rgba(245,245,240,0.5);margin-top:8px;font-weight:300;line-height:1.5}
+
+  /* GALLERY */
+  .gallery{background:#050d07}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px;margin-top:60px}
+  .g-item{overflow:hidden;border-radius:4px;position:relative}
+  .g-item.tall{grid-row:span 2}
+  .g-item.wide{grid-column:span 2}
+  .g-item img{width:100%;height:100%;min-height:180px;object-fit:cover;filter:brightness(0.75) saturate(0.8);transition:all .4s}
+  .g-item:hover img{filter:brightness(0.9) saturate(1);transform:scale(1.04)}
+  .g-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,13,7,0.8));opacity:0;transition:opacity .3s}
+  .g-item:hover .g-overlay{opacity:1}
+
+  /* TESTIMONIALS */
+  .testimonials{background:#060e08}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+  .testi-card{padding:32px;background:#050d07;border:1px solid rgba(212,160,23,0.1);border-radius:6px;position:relative}
+  .testi-card::before{content:'"';font-family:'Bebas Neue',sans-serif;font-size:80px;color:var(--gold);opacity:0.15;position:absolute;top:10px;right:20px;line-height:1}
+  .testi-stars{color:var(--gold);font-size:14px;margin-bottom:16px;letter-spacing:2px}
+  .testi-text{font-size:14px;color:rgba(245,245,240,0.65);line-height:1.8;margin-bottom:24px;font-weight:300}
+  .testi-author{display:flex;align-items:center;gap:12px}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--green2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--gold)}
+  .testi-name{font-weight:700;font-size:14px}
+  .testi-role{font-size:12px;color:var(--gray)}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(135deg,var(--green) 0%,var(--green2) 50%,var(--green3) 100%);padding:100px 8%;text-align:center;position:relative;overflow:hidden}
+  .cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=1400&q=80') center/cover no-repeat;opacity:0.08}
+  .cta-content{position:relative;z-index:2}
+  .cta-section .section-title{color:var(--white)}
+  .cta-section .section-sub{color:rgba(255,255,255,0.7);margin:0 auto 40px}
+
+  /* CONTACT */
+  .contact{background:#050d07}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;margin-top:60px;align-items:start}
+  .contact-info{display:flex;flex-direction:column;gap:24px}
+  .contact-item{display:flex;align-items:center;gap:16px;padding:20px;background:rgba(212,160,23,0.05);border:1px solid rgba(212,160,23,0.1);border-radius:4px}
+  .contact-icon{width:48px;height:48px;background:rgba(212,160,23,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;color:var(--gold)}
+  .contact-label{font-size:11px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .contact-val{font-size:15px;font-weight:600}
+  .contact-form{display:flex;flex-direction:column;gap:16px}
+  .form-group{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  input,textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(212,160,23,0.15);border-radius:4px;padding:14px 16px;color:var(--white);font-family:'Tajawal',sans-serif;font-size:14px;width:100%;outline:none;transition:border .3s}
+  input:focus,textarea:focus{border-color:rgba(212,160,23,0.5)}
+  input::placeholder,textarea::placeholder{color:rgba(245,245,240,0.3)}
+  textarea{resize:vertical;min-height:120px}
+
+  /* FOOTER */
+  footer{background:#030a05;padding:50px 8% 30px;border-top:1px solid rgba(212,160,23,0.1)}
+  .footer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;flex-wrap:wrap;gap:20px}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--gold)}
+  .footer-logo span{color:var(--white)}
+  .social-links{display:flex;gap:12px}
+  .social-link{width:40px;height:40px;background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;transition:all .3s;text-decoration:none}
+  .social-link:hover{background:rgba(212,160,23,0.2);border-color:var(--gold)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;text-align:center;font-size:12px;color:rgba(245,245,240,0.3)}
+
+  /* SCROLL REVEAL ANIMATION */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">RAUF <span>COACH</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">عني</a></li>
+    <li><a href="#programs">البرامج</a></li>
+    <li><a href="#achievements">إنجازاتي</a></li>
+    <li><a href="#gallery">الصور</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">احجز جلسة</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="ti ti-shield-star" aria-hidden="true"></i>كاشف المنتخب الأردني • 2010-2015</div>
+    <h1>
+      <span class="line1">صنّع</span>
+      <span class="line2">نجم الغد</span>
+    </h1>
+    <p class="hero-desc">تدريب احترافي يبني اللاعبين من الأساس — تقنياً ونفسياً وجسدياً. ليس مجرد تمرين، بل مسار نحو الاحتراف.</p>
+    <div class="hero-btns">
+      <a href="#programs" class="btn-primary">اكتشف البرامج</a>
+      <a href="#contact" class="btn-secondary">تواصل معي</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">+200</div><div class="stat-label">لاعب مدرّب</div></div>
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">سنوات خبرة</div></div>
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">بطولة</div></div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid reveal">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80" alt="المدرب" class="about-img">
+      <div class="about-img-border"></div>
+      <div class="about-gold-line"></div>
+    </div>
+    <div>
+      <span class="section-tag">من أنا</span>
+      <h2 class="section-title">مدرب بشغف<br>كاشف بخبرة</h2>
+      <p class="section-sub">مدرب كرة قدم معتمد وكاشف رسمي للمنتخب الأردني، متخصص في الفئات العمرية من 2010 إلى 2015. أؤمن بأن كل طفل يحمل موهبة — مهمتي إظهارها وصقلها.</p>
+      <div class="about-features">
+        <div class="feature">
+          <i class="ti ti-certificate" aria-hidden="true"></i>
+          <div class="feature-title">شهادات معتمدة</div>
+          <div class="feature-desc">تدريب مرخص وفق المعايير الدولية لكرة القدم</div>
+        </div>
+        <div class="feature">
+          <i class="ti ti-eye-search" aria-hidden="true"></i>
+          <div class="feature-title">كاشف موهوبين</div>
+          <div class="feature-desc">عيني مدربة على اكتشاف اللاعبين الاستثنائيين</div>
+        </div>
+        <div class="feature">
+          <i class="ti ti-brain" aria-hidden="true"></i>
+          <div class="feature-title">تطوير نفسي</div>
+          <div class="feature-desc">نبني العقلية الرياضية الصحيحة من الصغر</div>
+        </div>
+        <div class="feature">
+          <i class="ti ti-users" aria-hidden="true"></i>
+          <div class="feature-title">روح الفريق</div>
+          <div class="feature-desc">تعليم قيم التعاون والقيادة الحقيقية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header reveal">
+    <div>
+      <span class="section-tag">البرامج التدريبية</span>
+      <h2 class="section-title">برامج مصممة<br>لكل مرحلة</h2>
+    </div>
+    <p class="section-sub">كل فئة عمرية لها أسلوب تدريب مختلف يناسب نموها الجسدي والإدراكي.</p>
+  </div>
+  <div class="programs-grid reveal">
+    <div class="program-card">
+      <div class="program-img-wrap">
+        <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80" alt="أكاديمية الناشئين" class="program-img">
+      </div>
+      <div class="program-body">
+        <span class="program-age">مواليد 2013-2015</span>
+        <div class="program-title">أكاديمية الناشئين</div>
+        <p class="program-desc">تأسيس المهارات الأساسية في بيئة ممتعة وآمنة تشجع على الحب للعبة.</p>
+        <a href="#contact" class="program-link">سجّل الآن <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="program-card">
+      <div class="program-img-wrap">
+        <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&q=80" alt="برنامج التطوير" class="program-img">
+      </div>
+      <div class="program-body">
+        <span class="program-age">مواليد 2011-2012</span>
+        <div class="program-title">برنامج التطوير</div>
+        <p class="program-desc">تعمق في التكتيك والتقنية مع التركيز على الأداء الفردي والجماعي.</p>
+        <a href="#contact" class="program-link">سجّل الآن <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="program-card">
+      <div class="program-img-wrap">
+        <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80" alt="مسار النخبة" class="program-img">
+      </div>
+      <div class="program-body">
+        <span class="program-age">مواليد 2010</span>
+        <div class="program-title">مسار النخبة</div>
+        <p class="program-desc">للموهوبين الجادين — تحضير للاختبارات والمنتخبات وفرص الاحتراف.</p>
+        <a href="#contact" class="program-link">سجّل الآن <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements" id="achievements">
+  <div class="ach-bg"></div>
+  <div class="ach-content reveal">
+    <span class="section-tag">الإنجازات</span>
+    <h2 class="section-title">أرقام تتكلم<br>بدل الكلام</h2>
+    <div class="ach-grid">
+      <div class="ach-item">
+        <div class="ach-icon"><i class="ti ti-trophy" aria-hidden="true"></i></div>
+        <div class="ach-num">15+</div>
+        <div class="ach-label">بطولة محلية<br>ودولية</div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-icon"><i class="ti ti-star" aria-hidden="true"></i></div>
+        <div class="ach-num">50+</div>
+        <div class="ach-label">لاعب وصل<br>للمنتخبات</div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div class="ach-num">200+</div>
+        <div class="ach-label">لاعب تخرّج<br>من الأكاديمية</div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-icon"><i class="ti ti-calendar-check" aria-hidden="true"></i></div>
+        <div class="ach-num">8+</div>
+        <div class="ach-label">سنوات في<br>صناعة الأبطال</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="reveal">
+    <span class="section-tag">معرض الصور</span>
+    <h2 class="section-title">لحظات من<br>الملعب</h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="g-item tall">
+      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&q=80" alt="تدريب">
+      <div class="g-overlay"></div>
+    </div>
+    <div class="g-item wide">
+      <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=700&q=80" alt="فريق">
+      <div class="g-overlay"></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=400&q=80" alt="مهارات">
+      <div class="g-overlay"></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=400&q=80" alt="لاعبون">
+      <div class="g-overlay"></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=400&q=80" alt="تدريب">
+      <div class="g-overlay"></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=400&q=80" alt="تحضير">
+      <div class="g-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal">
+    <span class="section-tag">آراء الأهالي</span>
+    <h2 class="section-title">ماذا يقول<br>الأهل عنّا</h2>
+  </div>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">ابني تغيّر 180 درجة بعد الانضمام. مش بس بالملعب، حتى بتعامله وانضباطه في البيت. المدرب أسلوبه محترم وبيتعامل مع كل لاعب بطريقة مختلفة.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">م.خ</div>
+        <div><div class="testi-name">محمد الخالدي</div><div class="testi-role">والد لاعب • مواليد 2012</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">ابنتي انضمت لأول مرة وكانت خايفة. بعد شهر بس صارت تنتظر التدريب بفارغ الصبر. المدرب يعرف كيف يبني ثقة اللاعب بنفسه.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">س.ع</div>
+        <div><div class="testi-name">سمر العمري</div><div class="testi-role">والدة لاعبة • مواليد 2013</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">اتصلت فيني إدارة المنتخب بعد كشف المواهب! ما كنت أتوقع بهالوقت القصير. شكراً للمدرب على العين الخبيرة اللي شافت الموهبة بابني.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">ا.ر</div>
+        <div><div class="testi-name">احمد الرشيد</div><div class="testi-role">والد لاعب • مواليد 2010</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-content reveal">
+    <span class="section-tag" style="color:rgba(255,255,255,0.7)">الخطوة الأولى</span>
+    <h2 class="section-title">مستعد تشوف<br>طفلك نجم؟</h2>
+    <p class="section-sub">سجّل طفلك اليوم وابدأ رحلة صناعة البطل. أماكن محدودة لضمان الجودة.</p>
+    <a href="#contact" class="btn-primary">احجز تجربة مجانية</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <span class="section-tag">تواصل معي</span>
+    <h2 class="section-title">خطوة واحدة<br>تفرق الكثير</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <p class="section-sub" style="margin-bottom:8px">لأي استفسار عن التسجيل، الجداول، أو كشف المواهب — أنا هنا.</p>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
+        <div><div class="contact-label">واتساب / اتصال</div><div class="contact-val">+962 7X XXX XXXX</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div><div class="contact-label">الموقع</div><div class="contact-val">الرمثا — اربد، الأردن</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+        <div><div class="contact-label">أوقات التدريب</div><div class="contact-val">ش — خ — ج  |  4م — 7م</div></div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+  <div class="form-row">
+    <input type="text" name="اسم_الوالد" placeholder="اسم الوالد / الولية" required>
+    <input type="text" name="اسم_اللاعب" placeholder="اسم اللاعب" required>
+  </div>
+  <div class="form-row">
+    <input type="tel" name="رقم_الهاتف" placeholder="رقم الهاتف" required>
+    <input type="text" name="سنة_الميلاد" placeholder="سنة الميلاد">
+  </div>
+  <textarea name="ملاحظات" placeholder="أي ملاحظات أو أسئلة..."></textarea>
+  <button type="submit" class="btn-primary" style="width:100%;cursor:pointer">أرسل الطلب ⚽</button>
+</form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">RAUF <span>COACH</span></div>
+    <p style="font-size:13px;color:var(--gray);max-width:400px;text-align:center">نبني لاعبي المستقبل — الرمثا، الأردن</p>
+    <div class="social-links">
+      <a href="#" class="social-link"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
+      <a href="#" class="social-link"><i class="ti ti-brand-tiktok" aria-hidden="true"></i></a>
+      <a href="#" class="social-link"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></a>
+      <a href="#" class="social-link"><i class="ti ti-brand-youtube" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Rauf Coach — جميع الحقوق محفوظة</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('visible')}
+  })
+},{threshold:0.1})
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault()
+    const t = document.querySelector(a.getAttribute('href'))
+    if(t) t.scrollIntoView({behavior:'smooth'})
+  })
+})
+</script>
+</body>
+</html>
