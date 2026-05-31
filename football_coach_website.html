@@ -856,6 +856,20 @@
       opacity: 1;
       transform: translateY(0)
     }
+    .area-btn {
+  background: rgba(212,160,23,0.06);
+  border: 1px solid rgba(212,160,23,0.18);
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-family: 'Tajawal', sans-serif;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.area-btn:hover { border-color: var(--gold); color: var(--gold); }
+.area-btn.selected { background: rgba(212,160,23,0.15); border-color: var(--gold); color: var(--gold); font-weight: 700; }
   </style>
   </head>
 
@@ -1165,19 +1179,26 @@
           </div>
         </div>
         <div>
-          <form class="contact-form" action="https://formspree.io/f/xrejdydq" method="POST">
-            <div class="form-row">
-              <input type="text" name="اسم_الوالد" placeholder="اسم الوالد / الولية" required>
-              <input type="text" name="اسم_اللاعب" placeholder="اسم اللاعب" required>
-            </div>
-            8 <div class="form-row">
-              <input type="tel" name="رقم_الهاتف" placeholder="رقم الهاتف" required>
-              <input type="text" name="سنة_الميلاد" placeholder="سنة الميلاد">
-            </div>
-            <textarea name="ملاحظات" placeholder="أي ملاحظات أو أسئلة..."></textarea>
-            <button type="submit" class="btn-primary" style="width:100%;cursor:pointer">أرسل الطلب ⚽</button>
-          </form>
-        </div>
+  <form class="contact-form" action="https://formspree.io/f/xrejdydq" method="POST">
+    <div class="form-row">
+      <input type="text" name="اسم_الوالد" placeholder="اسم الوالد / الولية" required>
+      <input type="text" name="اسم_اللاعب" placeholder="اسم اللاعب" required>
+    </div>
+    <div class="form-row">
+      <input type="tel" name="رقم_الهاتف" placeholder="رقم الهاتف" required>
+      <input type="text" name="سنة_الميلاد" placeholder="سنة الميلاد">
+    </div>
+
+    <p style="font-size:12px;color:var(--gray);letter-spacing:1px;margin-bottom:10px">المنطقة السكنية</p>
+    <div id="areaGrid" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <!-- الأزرار -->
+    </div>
+    <p id="areaDisplay" style="font-size:13px;color:var(--gold);margin-bottom:12px;min-height:18px"></p>
+    <input type="hidden" name="المنطقة" id="areaInput">
+
+    <button type="submit" class="btn-primary" style="width:100%;cursor:pointer">أرسل الطلب ⚽</button>
+  </form>
+</div>
       </div>
       </div>
     </section>
@@ -1213,6 +1234,28 @@
           if (t) t.scrollIntoView({behavior: 'smooth'})
         })
       })
+      const areas = ['الهاشمية','السخنة','غريسا','ام الصليح','المصفاة','الوينك',
+  'حي المسامير','البتراوي','شارع 36','شارع 26','شارع 16',
+  'حي معصوم','حي الامير محمد','الغويرية','حي رمزي',
+  'دوار الطوباسي','دوار بادي','مدينة الشرق'];
+
+const grid = document.getElementById('areaGrid');
+const display = document.getElementById('areaDisplay');
+const hidden = document.getElementById('areaInput');
+
+areas.forEach(area => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'area-btn';
+  btn.textContent = area;
+  btn.onclick = () => {
+    grid.querySelectorAll('.area-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    hidden.value = area;
+    display.textContent = 'تم الاختيار: ' + area;
+  };
+  grid.appendChild(btn);
+});
     </script>
     <style>
       @media(max-width:992px) {
